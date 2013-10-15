@@ -1,0 +1,5 @@
+name = studio tweeks
+description = Adds tweeks to studio.
+core = 7.x
+package = Studio
+files[] = studio_job.module
