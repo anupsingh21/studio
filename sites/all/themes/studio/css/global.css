@@ -1,0 +1,64 @@
+/*  style for css
+*/
+/*.field-group-format {
+  border: 2px solid #E5E5E5;
+  padding: 20px 25px 15px;
+  background: #F1F1F1;
+  margin: 20px 0px;
+  clear: both; }*/
+
+.hidden-element{
+  display: none;
+}
+
+.group-price .field-widget-number {
+  width: 33%;
+  float: left; }
+
+.node-type-job img{
+  border: 2px solid grey;
+  border-radius: 2%;
+}
+
+.field-name-field-job-type a{
+  background-color: grey;
+  color: white;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.field-name-field-job-type a:hover{
+   color: black;
+ }
+ 
+ .group_detail .field-label{
+   width: 80px;
+ }
+ 
+ .group_detail{
+  float: right;	 
+}
+
+.group_detail .field{
+  padding: 10px;
+  
+}
+.form-file {
+  background-color: rgb(201, 221, 219);
+  padding: 3px;
+  border-radius: 2px;
+  border: 1px solid grey;
+}
+
+body{
+  background-image: url("../images/body_bg.png");	
+}
+
+/*.fieldset-title{
+  border: 2px solid;
+  background-color: rgb(157, 238, 125);
+  padding: 5px;
+  border-radius: 5px;
+  margin: 2px;
+}*/
+  
