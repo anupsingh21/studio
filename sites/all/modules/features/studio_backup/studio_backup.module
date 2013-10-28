@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the studio backup feature.
+ */
+
+include_once 'studio_backup.features.inc';
