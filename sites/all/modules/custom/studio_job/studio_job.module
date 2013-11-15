@@ -19,22 +19,55 @@ function sm($variable){
  */
  
 function studio_job_form_alter(&$form, &$form_state, $form_id){
+  global $user;
   if($form_id == "job_node_form"){
     $form['field_remaining_amount']['#attribute']['disabled'] = TRUE;
+    $form['#validate'][] = 'node_form_custom_validate';
+    $form['field_remaining_amount']['#access'] = FALSE;
     if((arg(0) == "node") && (arg(1) == "add") && (arg(2) == "job")){
       $form['field_image_ready']['#access'] = FALSE;
       $form['field_date_ready']['#access'] = FALSE;
-    }
-    
+    }  
+  }
+  
+  if($form_id == "booking_node_form"){
+    $form['field_remaining_amount']['#attribute']['disabled'] = TRUE;
+    $form['#validate'][] = 'node_form_custom_validate';
+    $form['field_remaining_amount']['#access'] = FALSE;
+    if((arg(0) == "node") && (arg(1) == "add") && (arg(2) == "booking")){
+      $form['field_album_image_ready']['#access'] = FALSE;
+      $form['field_date_ready']['#access'] = FALSE;
+    }  
   }
 }
+
+/* 
+ * Custom validate for job and booking submit
+ */
+
+function node_form_custom_validate($form, &$form_state){
+  global $user;
+  if($user->uid > 1) {
+        $login_user = user_load($user->uid);
+        $form_state['values']['og_group_ref']['und'][0]['target_id'] = $login_user->og_user_node['und'][0]['target_id'];
+        if ($form_state['values']['field_price']['und'][0]['value'] > $form_state['values']['field_advance_amount']['und'][0]['value']) {
+            $form_state['values']['field_remaining_amount']['und'][0]['value'] = $form_state['values']['field_price']['und'][0]['value'] - $form_state['values']['field_advance_amount']['und'][0]['value'];
+        } else {
+            form_set_error('field_advance_amount', t('Advance amount should be lesser than price'));
+        }
+    }
+  
+}
+
+
+
 
 /**
  *  hook_init()
  */
 
 function studio_job_init(){
-  drupal_add_js(drupal_get_path('module', 'studio_job') . '/js/studio_job.js');
+  //drupal_add_js(drupal_get_path('module', 'studio_job') . '/js/studio_job.js');
 }
 
 /**
